@@ -5,9 +5,23 @@
 }
 @font-face {
   font-family: 'Hind';
+  src: url('/fonts/Hind/Hind-Light.ttf');
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hind';
   src: url('/fonts/Hind/Hind-Regular.ttf');
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hind';
+  src: url('/fonts/Hind/Hind-Bold.ttf');
+  font-style: normal;
+  font-weight: 700;
   font-display: swap;
 }
 html {
@@ -16,4 +30,28 @@ html {
 body {
   font-family: 'Hind', Arial, Helvetica, sans-serif;
   line-height: 1.5;
+}
+ol {
+  list-style: decimal;
+  list-style-position: inside;
+}
+ol > li::marker {
+  font-weight: 700;
+}
+ul {
+  list-style: none;
+}
+ul > li {
+  position: relative;
+  padding-left: 1.75em;
+}
+ul > li::before {
+  content: '';
+  background-color: black;
+  position: absolute;
+  border-radius: 50%;
+  width: 0.375em;
+  height: 0.375em;
+  top: calc(0.875em - 0.1875em);
+  left: 0.25em;
 }
