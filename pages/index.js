@@ -7,7 +7,21 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 export default function Home({ data }) {
-  const [inputValue, setInputValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
+  const filteredData = data
+    .sort(
+      (a, b) =>
+        Number(new Date(b.frontMatter.updatedAt)) -
+        Number(new Date(a.frontMatter.updatedAt))
+    )
+    .filter((dataItem) =>
+      dataItem.frontMatter.tags
+        .map((tag) => tag.toLowerCase())
+        .map((tag) => tag.includes(searchValue.toLowerCase()))
+    );
+
+  console.log(filteredData);
+  // dataItem.frontMatter.name.toLowerCase().includes(searchValue.toLowerCase());
 
   return (
     <Layout>
@@ -24,15 +38,19 @@ export default function Home({ data }) {
       <form autoComplete="off" className={styles.form}>
         <input
           type="text"
-          name="inputValue"
-          id="inputValue"
+          name="search"
+          id="search"
           placeholder="username or book category"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
       </form>
       <section className={styles[`data-section`]}>
-        {data.map((item) => (
+        {!filteredData.length && (
+          <p className={styles[`no-result-found`]}>0 results found</p>
+        )}
+
+        {filteredData.map((item) => (
           <div className={styles.item} key={item.slug}>
             <Link href={`/${item.slug}`}>
               <a className={styles.link}>{item.frontMatter.name}</a>
