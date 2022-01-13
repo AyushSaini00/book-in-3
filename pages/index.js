@@ -26,6 +26,11 @@ export default function Home({ data }) {
         />
         <button type="submit">Find</button>
       </form>
+      <div>
+        {data.map((item) => (
+          <div key={item.id}></div>
+        ))}
+      </div>
       {/* <div>
         <h2>What&apos;s new?</h2>
         <p>Display last 3 recent updates</p>

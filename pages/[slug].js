@@ -4,12 +4,68 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import Layout from '../components/Layout';
+import Link from 'next/link';
+import Image from 'next/image';
 
-const UserDataPage = ({ frontMatter, mdxSource }) => {
+const UserDataPage = ({ frontMatter, slug, mdxSource }) => {
+  const sizes = {
+    userImage: 100,
+    icon: 25
+  };
   return (
     <Layout>
-      <h1>{frontMatter.name}</h1>
-      <MDXRemote {...mdxSource} />
+      <header className="page-header">
+        <div className="user-image-wrapper">
+          <Image
+            className="user-image"
+            src={`https://github.com/${slug}.png`}
+            alt={frontMatter.name}
+            width={sizes.userImage}
+            height={sizes.userImage}
+          />
+        </div>
+        <div>
+          <h1>{frontMatter.name}</h1>
+          <div>
+            {frontMatter.twitter && (
+              <a
+                href={`https://www.twitter.com/${frontMatter.twitter}`}
+                className="logo-link"
+              >
+                <Image
+                  src={`/twitter.svg`}
+                  alt="twitter logo"
+                  width={sizes.icon}
+                  height={sizes.icon}
+                />
+              </a>
+            )}
+            {frontMatter.url && (
+              <a href={frontMatter.url} className="logo-link">
+                <Image
+                  src={`/website.svg`}
+                  alt="website logo"
+                  width={23}
+                  height={23}
+                />
+              </a>
+            )}
+          </div>
+        </div>
+      </header>
+      <article>
+        <MDXRemote {...mdxSource} />
+      </article>
+      <footer>
+        <p>
+          Powered by{' '}
+          <Link href="/">
+            <a>Book in 3</a>
+          </Link>{' '}
+          - Find or share summaries of your favorite books in 3 sentences or
+          less
+        </p>
+      </footer>
     </Layout>
   );
 };
