@@ -15,43 +15,33 @@ const UserDataPage = ({ frontMatter, slug, mdxSource }) => {
   return (
     <Layout>
       <header className="page-header">
-        <div className="user-image-wrapper">
-          <Image
-            className="user-image"
-            src={`https://github.com/${slug}.png`}
-            alt={frontMatter.name}
-            width={sizes.userImage}
-            height={sizes.userImage}
-          />
+        <h1>{frontMatter.name}</h1>
+        <div className="logo-wrapper">
+          {frontMatter.twitter && (
+            <a
+              href={`https://www.twitter.com/${frontMatter.twitter}`}
+              className="logo-link"
+            >
+              <Image
+                src={`/twitter.svg`}
+                alt="twitter logo"
+                width={sizes.icon}
+                height={sizes.icon}
+              />
+            </a>
+          )}
+          {frontMatter.url && (
+            <a href={frontMatter.url} className="logo-link">
+              <Image
+                src={`/website.svg`}
+                alt="website logo"
+                width={23}
+                height={23}
+              />
+            </a>
+          )}
         </div>
-        <div>
-          <h1>{frontMatter.name}</h1>
-          <div>
-            {frontMatter.twitter && (
-              <a
-                href={`https://www.twitter.com/${frontMatter.twitter}`}
-                className="logo-link"
-              >
-                <Image
-                  src={`/twitter.svg`}
-                  alt="twitter logo"
-                  width={sizes.icon}
-                  height={sizes.icon}
-                />
-              </a>
-            )}
-            {frontMatter.url && (
-              <a href={frontMatter.url} className="logo-link">
-                <Image
-                  src={`/website.svg`}
-                  alt="website logo"
-                  width={23}
-                  height={23}
-                />
-              </a>
-            )}
-          </div>
-        </div>
+        <div className="hr-line"></div>
       </header>
       <article>
         <MDXRemote {...mdxSource} />

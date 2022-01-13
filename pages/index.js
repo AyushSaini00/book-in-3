@@ -4,37 +4,47 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Home({ data }) {
   const [inputValue, setInputValue] = useState('');
 
   return (
     <Layout>
-      <h1>Book in 3</h1>
-      <p>
-        Find or share summaries of your favorite books in 3 sentences (or less)
-      </p>
-      <form onSubmit={(e) => handleSubmit(e)} autoComplete="off">
+      <header className={styles.header}>
+        <h1>
+          Book in <span className="green">3</span>
+        </h1>
+        <p>
+          Find or share summaries of your favorite books in 3 sentences (or
+          less)
+        </p>
+      </header>
+
+      <form autoComplete="off" className={styles.form}>
         <input
           type="text"
-          required={true}
           name="inputValue"
           id="inputValue"
           placeholder="username or book category"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <button type="submit">Find</button>
       </form>
-      <div>
+      <section className={styles[`data-section`]}>
         {data.map((item) => (
-          <div key={item.id}></div>
+          <div className={styles.item} key={item.slug}>
+            <Link href={`/${item.slug}`}>
+              <a className={styles.link}>{item.frontMatter.name}</a>
+            </Link>
+            <ul className={styles[`tags-ul`]}>
+              {item.frontMatter.tags.map((tag) => (
+                <li key={tag}>{tag}</li>
+              ))}
+            </ul>
+          </div>
         ))}
-      </div>
-      {/* <div>
-        <h2>What&apos;s new?</h2>
-        <p>Display last 3 recent updates</p>
-      </div> */}
+      </section>
     </Layout>
   );
 }
