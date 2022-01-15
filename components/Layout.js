@@ -24,12 +24,6 @@ const Layout = ({ title, description, author, type, twitter, children }) => {
           as="font"
           crossOrigin=""
         />
-        <link
-          rel="preload"
-          href="/fonts/Hind/Hind-Light.tff"
-          as="font"
-          crossOrigin=""
-        />
 
         <title>{title ? title : defaultMeta.title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />

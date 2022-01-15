@@ -6,8 +6,10 @@ import matter from 'gray-matter';
 import Layout from '../components/Layout';
 import Link from 'next/link';
 import Image from 'next/image';
+import { parseISO, format } from 'date-fns';
 
 const UserDataPage = ({ frontMatter, slug, mdxSource }) => {
+  const { name, bio, twitter, url, updatedAt } = frontMatter;
   const sizes = {
     userImage: 100,
     icon: 25
@@ -15,32 +17,40 @@ const UserDataPage = ({ frontMatter, slug, mdxSource }) => {
   return (
     <Layout>
       <header className="page-header">
-        <h1>{frontMatter.name}</h1>
-        <div className="logo-wrapper">
-          {frontMatter.twitter && (
-            <a
-              href={`https://www.twitter.com/${frontMatter.twitter}`}
-              className="logo-link"
-            >
-              <Image
-                src={`/twitter.svg`}
-                alt="twitter logo"
-                width={sizes.icon}
-                height={sizes.icon}
-              />
-            </a>
-          )}
-          {frontMatter.url && (
-            <a href={frontMatter.url} className="logo-link">
-              <Image
-                src={`/website.svg`}
-                alt="website logo"
-                width={23}
-                height={23}
-              />
-            </a>
-          )}
-        </div>
+        {name && <h1>{name}</h1>}
+        {bio && <p className="bio">{bio}</p>}
+        {updatedAt && (
+          <p className="updated">
+            Updated @ {format(parseISO(updatedAt), 'MMM dd, yyyy')}
+          </p>
+        )}
+        {(twitter || url) && (
+          <div className="logo-wrapper">
+            {twitter && (
+              <a
+                href={`https://www.twitter.com/${twitter}`}
+                className="logo-link"
+              >
+                <Image
+                  src={`/twitter.svg`}
+                  alt="twitter logo"
+                  width={sizes.icon}
+                  height={sizes.icon}
+                />
+              </a>
+            )}
+            {url && (
+              <a href={url} className="logo-link">
+                <Image
+                  src={`/website.svg`}
+                  alt="website logo"
+                  width={23}
+                  height={23}
+                />
+              </a>
+            )}
+          </div>
+        )}
         <div className="hr-line"></div>
       </header>
       <article>
