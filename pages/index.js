@@ -8,20 +8,29 @@ import Link from 'next/link';
 
 export default function Home({ data }) {
   const [searchValue, setSearchValue] = useState('');
+
   const filteredData = data
     .sort(
       (a, b) =>
         Number(new Date(b.frontMatter.updatedAt)) -
         Number(new Date(a.frontMatter.updatedAt))
     )
-    .filter((dataItem) =>
-      dataItem.frontMatter.tags
-        .map((tag) => tag.toLowerCase())
-        .map((tag) => tag.includes(searchValue.toLowerCase()))
-    );
-
-  console.log(filteredData);
-  // dataItem.frontMatter.name.toLowerCase().includes(searchValue.toLowerCase());
+    // code to filter data by username
+    // .filter((dataObj) =>
+    //   dataObj.frontMatter.name.toLowerCase().includes(searchValue.toLowerCase())
+    // )
+    .map((dataObj) => {
+      return {
+        ...dataObj,
+        frontMatter: {
+          ...dataObj.frontMatter,
+          tags: dataObj.frontMatter.tags.filter((tag) =>
+            tag.toLowerCase().includes(searchValue.toLowerCase())
+          )
+        }
+      };
+    })
+    .filter((dataObj) => dataObj.frontMatter.tags.length > 0);
 
   return (
     <Layout>
@@ -40,7 +49,7 @@ export default function Home({ data }) {
           type="text"
           name="search"
           id="search"
-          placeholder="username or book category"
+          placeholder="Search for a book category"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
