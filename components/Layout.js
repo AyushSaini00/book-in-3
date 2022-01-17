@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import FooterHomepage from './FooterHomepage';
+import FooterUserPage from './FooterUserPage';
 
 const Layout = ({
   title,
@@ -7,6 +9,7 @@ const Layout = ({
   type,
   twitter,
   image,
+  isHomePage,
   children
 }) => {
   const defaultMeta = {
@@ -78,7 +81,8 @@ const Layout = ({
           content={image ? image : defaultMeta.image}
         />
       </Head>
-      <main>{children}</main>
+      {children}
+      {isHomePage ? <FooterHomepage /> : <FooterUserPage />}
     </>
   );
 };

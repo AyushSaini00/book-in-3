@@ -36,18 +36,19 @@ body {
   line-height: 1.5;
   color: var(--white);
   background: var(--bg);
-  min-height: 100vh;
 }
-main {
+#__next {
+  min-height: 100vh;
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   max-width: 50rem;
   margin: 0 auto;
 }
-
+main {
+  margin-bottom: 2rem;
+}
 article {
   border: 4px solid var(--bg-interior);
   border-radius: 20px;
@@ -149,7 +150,7 @@ li {
   margin: 0.5rem 0;
 }
 footer {
-  margin: 2rem 0;
+  margin: auto 0 2rem 0;
 }
 footer > p {
   text-align: center;

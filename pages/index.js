@@ -5,7 +5,6 @@ import path from 'path';
 import matter from 'gray-matter';
 import { useState } from 'react';
 import Link from 'next/link';
-import FooterHomepage from '../components/FooterHomepage';
 
 export default function Home({ data }) {
   const [searchValue, setSearchValue] = useState('');
@@ -34,7 +33,7 @@ export default function Home({ data }) {
     .filter((dataObj) => dataObj.frontMatter.tags.length > 0);
 
   return (
-    <Layout title="Book in 3 | Home">
+    <Layout title="Book in 3 | Home" isHomePage={true}>
       <header className={styles.header}>
         <h1>
           Book in <span className="green">3</span>
@@ -52,25 +51,26 @@ export default function Home({ data }) {
           onChange={(e) => setSearchValue(e.target.value)}
         />
       </form>
-      <section className={styles[`data-section`]}>
+      <main className={styles[`main-user-list`]}>
         {!filteredData.length && (
           <p className={styles[`no-result-found`]}>0 results found</p>
         )}
 
         {filteredData.map((item) => (
-          <div className={styles.item} key={item.slug}>
+          <section className={styles.item} key={item.slug}>
             <Link href={`/${item.slug}`}>
               <a className={styles.link}>{item.frontMatter.name}</a>
             </Link>
-            <ul className={styles[`tags-ul`]}>
-              {item.frontMatter.tags.map((tag) => (
-                <li key={tag}>{tag}</li>
-              ))}
-            </ul>
-          </div>
+            {item.frontMatter.tags.length > 0 && (
+              <ul className={styles[`tags-ul`]}>
+                {item.frontMatter.tags.map((tag) => (
+                  <li key={tag}>{tag}</li>
+                ))}
+              </ul>
+            )}
+          </section>
         ))}
-      </section>
-      <FooterHomepage />
+      </main>
     </Layout>
   );
 }

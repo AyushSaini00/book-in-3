@@ -27,12 +27,12 @@
 .form > input:focus {
   outline: 2px solid var(--green);
 }
-.data-section {
+.main-user-list {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-.data-section > div {
+.main-user-list > section {
   margin: 1rem 0;
 }
 .item {
