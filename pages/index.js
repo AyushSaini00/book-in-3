@@ -5,6 +5,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { useState } from 'react';
 import Link from 'next/link';
+import FooterHomepage from '../components/FooterHomepage';
 
 export default function Home({ data }) {
   const [searchValue, setSearchValue] = useState('');
@@ -69,14 +70,7 @@ export default function Home({ data }) {
           </div>
         ))}
       </section>
-      <footer>
-        <p>
-          Built by <a href="https://twitter.com/AyushCodes">Ayush</a> |{' '}
-          <Link href="/why">
-            <a>Why?</a>
-          </Link>
-        </p>
-      </footer>
+      <FooterHomepage />
     </Layout>
   );
 }
