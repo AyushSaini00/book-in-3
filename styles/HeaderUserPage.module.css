@@ -1,0 +1,38 @@
+.page-header {
+  margin: 2rem 0 3rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.bio {
+  font-size: 1.1rem;
+  text-align: center;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.updated {
+  color: var(--light-text);
+}
+.logo-wrapper {
+  display: flex;
+  margin: 0.5rem 0;
+}
+.logo-link {
+  display: flex;
+  margin-right: 8px;
+}
+.logo-link:hover .svg {
+  fill: var(--green);
+}
+.svg {
+  fill: white;
+  width: 24px;
+  height: 24px;
+}
+.hr-line {
+  border: 1px solid var(--green);
+  width: 50%;
+  margin-top: 0.5rem;
+}
