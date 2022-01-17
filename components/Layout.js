@@ -1,13 +1,22 @@
 import Head from 'next/head';
 
-const Layout = ({ title, description, author, type, twitter, children }) => {
+const Layout = ({
+  title,
+  description,
+  author,
+  type,
+  twitter,
+  image,
+  children
+}) => {
   const defaultMeta = {
     title: 'Book in 3',
     description:
       'Find or share summaries of your favorite books in 3 sentences or less',
     author: 'Ayush Saini',
     type: 'website',
-    twitter: '@AyushCodes'
+    twitter: '@AyushCodes',
+    image: 'https://www.bookin3.vercel.app/public/cover.png'
   };
   return (
     <>
@@ -40,6 +49,7 @@ const Layout = ({ title, description, author, type, twitter, children }) => {
           property="og:description"
           content={description ? description : defaultMeta.description}
         />
+        <meta property="og:image" content={image ? image : defaultMeta.image} />
         <meta property="og:type" content={type ? type : defaultMeta.type} />
         <meta
           property="og:site_name"
@@ -61,6 +71,10 @@ const Layout = ({ title, description, author, type, twitter, children }) => {
         <meta
           name="twitter:description"
           content={description ? description : defaultMeta.description}
+        />
+        <meta
+          name="twitter:image"
+          content={image ? image : defaultMeta.image}
         />
       </Head>
       <main>{children}</main>
