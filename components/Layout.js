@@ -16,7 +16,7 @@ const Layout = ({
     author: 'Ayush Saini',
     type: 'website',
     twitter: '@AyushCodes',
-    image: 'https://www.bookin3.vercel.app/public/cover.png'
+    image: 'https://bookin3.vercel.app/cover.png'
   };
   return (
     <>
