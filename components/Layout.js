@@ -13,16 +13,16 @@ const Layout = ({ title, description, author, type, twitter, children }) => {
     <>
       <Head>
         <link
-          rel="preload"
+          rel="preload prefetch"
           href="/fonts/Hind/Hind-Regular.tff"
           as="font"
-          crossOrigin=""
+          crossOrigin
         />
         <link
-          rel="preload"
+          rel="preload prefetch"
           href="/fonts/Hind/Hind-Bold.tff"
           as="font"
-          crossOrigin=""
+          crossOrigin
         />
 
         <title>{title ? title : defaultMeta.title}</title>
