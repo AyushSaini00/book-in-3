@@ -5,17 +5,13 @@ import path from 'path';
 import matter from 'gray-matter';
 import Layout from '../components/Layout';
 import Link from 'next/link';
-import Image from 'next/image';
 import { parseISO, format } from 'date-fns';
 
-const UserDataPage = ({ frontMatter, slug, mdxSource }) => {
+const UserDataPage = ({ frontMatter, mdxSource }) => {
   const { name, bio, twitter, url, updatedAt } = frontMatter;
-  const sizes = {
-    userImage: 100,
-    icon: 25
-  };
+
   return (
-    <Layout>
+    <Layout title={`${name}'s Book in 3`} author={name} twitter={twitter}>
       <header className="page-header">
         {name && <h1>{name}</h1>}
         {bio && <p className="bio">{bio}</p>}
@@ -56,8 +52,7 @@ const UserDataPage = ({ frontMatter, slug, mdxSource }) => {
           <Link href="/">
             <a>Book in 3</a>
           </Link>{' '}
-          - Find or share summaries of your favorite books in 3 sentences or
-          less
+          - Find or share book summaries in three sentences (or less)
         </p>
       </footer>
     </Layout>

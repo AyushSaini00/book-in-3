@@ -33,15 +33,12 @@ export default function Home({ data }) {
     .filter((dataObj) => dataObj.frontMatter.tags.length > 0);
 
   return (
-    <Layout>
+    <Layout title="Book in 3 | Home">
       <header className={styles.header}>
         <h1>
           Book in <span className="green">3</span>
         </h1>
-        <p>
-          Find or share summaries of your favorite books in 3 sentences (or
-          less)
-        </p>
+        <p>Find or share book summaries in three sentences (or less)</p>
       </header>
 
       <form autoComplete="off" className={styles.form}>
@@ -72,6 +69,14 @@ export default function Home({ data }) {
           </div>
         ))}
       </section>
+      <footer>
+        <p>
+          Built by <a href="https://twitter.com/AyushCodes">Ayush</a> |{' '}
+          <Link href="/why">
+            <a>Why?</a>
+          </Link>
+        </p>
+      </footer>
     </Layout>
   );
 }
