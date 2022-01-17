@@ -151,3 +151,9 @@ li {
 footer {
   margin: 2rem 0;
 }
+footer > p {
+  text-align: center;
+}
+.footer-user-page-p-1 {
+  margin-bottom: 0.4rem;
+}
